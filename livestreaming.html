@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Pro - Livestreaming</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        #livestreamContainer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #livestreamContainer h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        #navbar {
+            background-color: #5cb85c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        #navbar a:hover {
+            color: #dff0d8;
+            text-decoration: underline;
+        }
+
+        .videoGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .videoLink {
+            background-color: #ffcccb;
+            border: 1px solid #ff9999;
+            border-radius: 5px;
+            padding: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .videoLink:hover {
+            background-color: #ff9999;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Menambahkan aturan CSS untuk video dan iframe */
+        #videoPlayerContainer {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-top: 56.25%; /* Untuk mempertahankan rasio 16:9 */
+        }
+
+        video, iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            #livestreamContainer {
+                padding: 5%;
+            }
+
+            .videoLink {
+                padding: 5%;
+            }
+
+            .button {
+                padding: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="livestreamContainer">
+        <div id="navbar">
+            <a href="home.html">Home</a>
+            <a href="#">About</a>
+            <a href="livestreaming.html">Livestreaming</a>
+            <a href="#">Contact</a>
+        </div>
+        <h1>Livestreaming</h1>
+        <div id="videoPlayerContainer">
+            <!-- Video player will be inserted here -->
+        </div>
+        <div class="videoGrid">
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGbW5jdHYlMkZpbmV3c2lkJmhlaWdodD0xMDAlMjUmd2lkdGg9MTAwJTI1')">
+                <img src="img/GTV.jpeg" alt="Thumbnail 1" class="thumbnail">
+                <p>GTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://www.cnnindonesia.com/tv/embed?ref=transmedia')">
+                <img src="img/CNN.png" alt="Thumbnail 2" class="thumbnail">
+                <p>CNN-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://video.sindonews.com/tv/inewstv')">
+                <img src="img/" alt="Thumbnail 4" class="thumbnail">
+                <p>SCTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGbW5jdHYlMkZpbmV3c2lkJmhlaWdodD0xMDAlMjUmd2lkdGg9MTAwJTI1')">
+                <img src="img/MNC.jpeg" alt="Thumbnail 2" class="thumbnail">
+                <p>MNCTV-HD</p>
+            </div>
+            <div class="videoLink" onclick="playVideo('https://sindikasi.inews.id/embed/video/YWdlbnQ9ZGVza3RvcCZ1cmw9aHR0cHMlM0ElMkYlMkZlbWJlZC5yY3RpcGx1cy5jb20lMkZsaXZlJTJGcmN0aSUyRmluZXdzaWQmaGVpZ2h0PTEwMCUyNSZ3aWR0aD0xMDAlMjU=')">
+                <img src="img/RCTI.png" alt="Thumbnail 2" class="thumbnail">
+                <p>RCTI-HD</p>
+            </div>
+            <!-- Menambahkan Vidio Embed untuk SCTV -->
+            <div class="videoLink" onclick="playVidioEmbed('https://www.vidio.com/live/204-sctv-tv-stream/embed?autoplay=true&player_only=true&live_chat=false&mute=false&')">
+                <img src="img/SCTV.jpeg" alt="Thumbnail Vidio" class="thumbnail">
+                <p>Vidio SCTV</p>
+            </div>
+            <!-- Menambahkan Vidio Embed untuk JAKTV -->
+            <div class="videoLink" onclick="playVidioEmbed('https://www.vidio.com/live/5415-jaktv-tv-stream/embed?autoplay=true&player_only=true&live_chat=false&mute=false&')">
+                <img src="img/JAK.png" alt="Thumbnail Vidio JAKTV" class="thumbnail">
+                <p>Vidio JAKTV</p>
+            </div>
+        </div>
+        <button class="button" onclick="goBack()">Kembali</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MT Pro. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        function playVideo(videoUrl) {
+            const videoContainer = document.getElementById('videoPlayerContainer');
+            videoContainer.innerHTML = ''; // Clear any existing video/iframe
+
+            if (videoUrl.includes('embed')) {
+                // If it's an embed URL, use iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = videoUrl;
+                iframe.frameborder = "0";
+                iframe.allowfullscreen = true;
+                iframe.width = '100%';
+                iframe.height = '315';
+                videoContainer.appendChild(iframe);
+            } else {
+                // Otherwise, treat as an HLS URL
+                const video = document.createElement('video');
+                video.id = 'videoPlayer';
+                video.controls = true;
+
+                if (Hls.isSupported()) {
+                    const hls = new Hls();
+                    hls.loadSource(videoUrl);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                        video.play();
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = videoUrl;
+                    video.addEventListener('loadedmetadata', function () {
+                        video.play();
+                    });
+                }
+
+                videoContainer.appendChild(video);
+            }
+        }
+
+        function playVidioEmbed(vidioUrl) {
+            const videoContainer = document.getElementById('videoPlayerContainer');
+            videoContainer.innerHTML = ''; // Clear any existing video/iframe
+
+            const iframe = document.createElement('iframe');
+            iframe.className = "vidio-embed";
+            iframe.src = vidioUrl;
+            iframe.width = "100%";
+            iframe.height = "315";
+            iframe.scrolling = "no";
+            iframe.frameborder = "0";
+            iframe.allowfullscreen = true;
+
+            videoContainer.appendChild(iframe);
+
+            const script = document.createElement('script');
+            script.src = "//cdn0-a.production.vidio.static6.com/assets/javascripts/vidio-embed.js";
+            document.body.appendChild(script);
+        }
+
+        function goBack() {
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+</html>
